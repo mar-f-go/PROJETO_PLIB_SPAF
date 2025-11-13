@@ -1,4 +1,4 @@
-<img width="67" height="28" alt="image" src="https://github.com/user-attachments/assets/d37b2afe-d5f4-45cc-84d7-d59aff379fbe" /># PROJETO_PLIB_SPAF
+# PROJETO_PLIB_SPAF
 projeto em desenvolvido em python de aplicação de um modelo de programação linear inteira binária + ajuste heurístico para a otimização de custos dos projetos do sistema predial de água fria (SPAF)
 
 ----------
