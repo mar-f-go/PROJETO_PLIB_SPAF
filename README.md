@@ -2,21 +2,23 @@
 projeto em desenvolvido em python de aplicação de um modelo de programação linear inteira binária + ajuste heurístico para a otimização de custos dos projetos do sistema predial de água fria (SPAF)
 
 ----------
-Instruções de uso:
+AVISOS GERAIS:
 
 VERSÃO PYTHON UTILIZADA: 3.13.1
 
 PARA UTILIZAR ESTE PROGRAMA, É NECESSÁRIO QUE SEJA REALIZADO O DOWNLOAD DE TODAS AS PASTAS DESTE REPOSITÓRIO.
 
-DURANTE O DESENVOLVIMENTO DO PROGRAMA, EU UTILIZEI O MICROSOFT VISUAL STUDIO 2022 E RECOMENDO FORTEMENTE QUE UTILIZE ESTE PROGRAMA, POIS NOS TESTES QUE EU FIZ, APARENTEMENTE O SOLVER CBC NÃO FUNCIONA COM O VISUAL STUDIO CODE, PELO MENOS QUANDO EU TENTEI UTILIZAR
+DURANTE O DESENVOLVIMENTO DO PROGRAMA, EU UTILIZEI O MICROSOFT VISUAL STUDIO 2022 E RECOMENDO FORTEMENTE QUE UTILIZE ESTE PROGRAMA, POIS NOS TESTES QUE EU FIZ, APARENTEMENTE O SOLVER CBC NÃO FUNCIONA COM O VISUAL STUDIO CODE, PELO MENOS QUANDO EU TENTEI UTILIZAR.
 
-Pré-requisitos e Instalação
+Pré-requisitos e Instalação:
 
 Para executar este projeto, é necessário ter os seguintes softwares instalados:
 
 Microsoft Visual Studio 2022: Utilizado como ambiente de desenvolvimento.
 
 Solver CBC (COIN-OR Branch-and-Cut): O programa depende deste solver para os cálculos de otimização. As instruções de instalação e o código-fonte estão disponíveis no repositório oficial disponivel no link: https://github.com/coin-or/Cbc
+
+Configuração para uso do programa:
 
 depois de realizar o download das pastas e instalação do solver cbc no computador, o arquivo "Projeto_tcc_visual_studio.py" deve ser aberto no Microsoft Visual Studio 2022, onde deve ser apresentado todo o código do programa. para utilizar o programa, devem ser inseridos dentro da função "main()", entre as linhas 2373 a 2378 do código, os caminhos dos arquivos que foram baixados deste repositório, como segue:
 
@@ -35,8 +37,6 @@ def main():
     registros_reducao = carregar_planilha_reducao(" CAMINHO PLANILHA PERDA DE CARGA REDUÇÃO .XLSX ")
 
 todas as planilhas necessárias estão disponiveis na pasta "planilhas" desse repositório.
-
-dentro da pasta "desenho_dxf_rede_figura_1" está disponivel o desenho da rede de exemplo apresentada na figura 1 do tcc no arquivo "desenho rede exemplo figura 1.dxf", caso queira testar o funcionamento do programa, basta inserir o caminho deste arquivo no "caminho_arquivo_dxf" da função main()
 
 Para alterar os valores de velocidade máxima permitidas para os tubos, basta atualizar a planilha "vazões máximas.xlsx", multiplicando o valor da coluna "área (m^2)" pelo valor da vazão que queira adotar, e colar os apenas os valores na coluna 
 "vazão (m^3/s)", pois estes serão os novos valores de vazão máxima que atende ao critério de velocidade que o programa vai considerar.
@@ -67,11 +67,17 @@ este trecho do código que fica dentro do "if vazao_reg > flow" deve ser copiado
 
 esse novo trecho aqui acima considera 2 diametros a mais que o minimo.
 
+UTILIZAÇÃO DO PROGRAMA:
+
+Dentro da pasta "desenho_dxf_rede_figura_1" está disponivel o desenho da rede de exemplo apresentada na figura 1 do tcc no arquivo "desenho rede exemplo figura 1.dxf" e também está disponivel o arquivo "orcamento manual 25 milimetros rede figura 1.xlsx" que possui a lista de diametros dos 14 trechos da rede adotados como 25 milimetros para testar a criação do orçamento para a solução de diametros inserido pelo usuário e os gráficos comparativos apresentados no capitulo 4 do tcc, caso queira testar o funcionamento do programa, basta inserir o caminho deste arquivo no "caminho_arquivo_dxf" da função main(), rodar o programa, e seguir com os passos apresentados a seguir:
+
 depois de ter adicionado os caminhos de todos os arquivos, deve ser iniciado o programa (clicando no "start" do Microsoft Visual Studio 2022), o programa vai executar os calculos deve aparecer o gráfico "distribuição das margens de segurança", que pode ser salvo no computador, e ao fechar a janela do gráfico, deve aparecer a seguinte mensagem:
 
 Gostaria de realizar o orçamento para diâmetros diferentes daqueles escolhidos pela otimização? (responda com sim ou não)
 
-mas antes de responder essa mensagem, é necessário que você copie a tabela apresentada dentro do terminal pelo código, chamada "RESULTADOS DA OTIMIZAÇÃO - DIÂMETROS ESCOLHIDOS E CUSTOS", pois nessa planilha é apresentado os diametros escolhidos para cada diametro pelo processo de otimização, mas também é apresentada a sequencia em que devem ser preenchidos os diametros manuais para a realização do orçamento, minha recomendação é que escreva em uma coluna de uma planilha excel cada diametro que queira utilizar para cada um dos trechos de tubulação, depois de organizar estes dados, volte ao terminal e responda "sim", e será apresentada a seguinte mensagem:
+Caso esteja testando o programa para a rede da figura 1, basta acessar o arquivo "orcamento manual 25 milimetros rede figura 1.xlsx", que apresenta o uma coluna com 14 linhas (quantidade de trechos presentes na rede da figura 1) com o valor "25", o que representa que o orçamento manual será feito atribuindo tubos de 25 milimetros para todos os trechos da rede.
+
+Mas caso esteja utilizando o programa com um arquivo .dxf com uma rede diferente da fornecida nesse repositório, antes de responder essa mensagem, é necessário que você copie a tabela apresentada dentro do terminal pelo código, chamada "RESULTADOS DA OTIMIZAÇÃO - DIÂMETROS ESCOLHIDOS E CUSTOS", pois nessa planilha é apresentado os diametros escolhidos para cada diametro pelo processo de otimização, ou seja, é o resultado final do processo de otimização, mas também é apresentada a sequencia em que devem ser preenchidos os diametros manuais para a realização do orçamento, minha recomendação é que escreva em uma coluna de uma planilha excel cada diametro que queira utilizar para cada um dos trechos de tubulação, depois de organizar estes dados, volte ao terminal e responda "sim", e será apresentada a seguinte mensagem:
 
 Cole a coluna de diâmetros (um por linha) e pressione Enter duas vezes para finalizar:
 
